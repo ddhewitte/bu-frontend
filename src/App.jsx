@@ -1,19 +1,19 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import logo from './assets/logo.png'
 import './App.css'
-import Header from './pages/Header'
-import Rate from './pages/Rate'
-import RateContent from './pages/RateContent'
+import Homepage from './pages/Homepage'
+import DashboardPage from './pages/DashboardPage'
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const [activeTab, setActiveTab] = useState('IDR');
 
   return (
     <>
+    <Router>
       <div
         className="min-h-screen text-white"
         style={{
@@ -21,14 +21,13 @@ function App() {
         }}
       >
 
-        <Header logo={logo} />
-
-        <main className="px-8 pb-10 md:px-[100px] mt-[50px]">
-          <Rate />
-          <RateContent activeTab={activeTab}/>
-        </main>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/admin" element={<DashboardPage />} />
+        </Routes>
 
       </div>
+    </Router>
     </>
   )
 }
