@@ -9,12 +9,19 @@ export default function Homepage() {
 
     return (
         <>
-            <Header logo={logo} />
+            <div
+                className="min-h-screen text-white"
+                style={{
+                    background: "linear-gradient(to top, #0A1C34 0%, #000000 100%)",
+                }}
+            >
+                <Header logo={logo} />
 
-            <main className="px-8 pb-10 md:px-[100px] mt-[50px]">
-                <Rate />
-                <RateContent activeTab={activeTab} />
-            </main>
+                <main className="px-8 pb-10 md:px-[100px] mt-[50px]">
+                    <Rate />
+                    <RateContent activeTab={activeTab} />
+                </main>
+            </div>
         </>
     )
 }

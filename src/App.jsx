@@ -14,19 +14,10 @@ function App() {
   return (
     <>
     <Router>
-      <div
-        className="min-h-screen text-white"
-        style={{
-          background: "linear-gradient(to top, #0A1C34 0%, #000000 100%)",
-        }}
-      >
-
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/admin" element={<DashboardPage />} />
         </Routes>
-
-      </div>
     </Router>
     </>
   )
