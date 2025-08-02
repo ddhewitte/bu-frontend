@@ -23,7 +23,7 @@ function App() {
 
         <Header logo={logo} />
 
-        <main className="px-8 md:px-[100px] mt-[50px]">
+        <main className="px-8 pb-10 md:px-[100px] mt-[50px]">
           <Rate />
           <RateContent activeTab={activeTab}/>
         </main>
