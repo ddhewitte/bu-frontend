@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DashboardHeader from './DashboardHeader'
 import logo from '../assets/logo.png'
 import { MdDashboard } from 'react-icons/md'
 import ChartBar from '../assets/chart_bar.png'
 import ComponentLogo from '../assets/component.png'
+import axios from 'axios'
 
 const menuItems = [
   { name: 'Dashboard', icon: <MdDashboard fontSize="small" /> },
@@ -43,9 +44,53 @@ const summaryCards = [
   },
 ]
 
+
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('IDR')
   const [activeMenu, setActiveMenu] = useState('Dashboard')
+  const [summaryCards, setSummaryCards] = useState([])
+
+  const API_ENDPOINT = import.meta.env.VITE_API_URL;
+
+useEffect(() => {
+  axios.get(`${API_ENDPOINT}/api/total`)
+    .then((res) => {
+      const data = res.data
+      const formatted = [
+        {
+          title: data.totalDeposit.label,
+          value: data.totalDeposit.amount,
+          label: data.totalDeposit.count,
+          icon: ComponentLogo,
+        },
+        
+        {
+          title: 'Total Withdraw',
+          value: '0',
+          label: 'Member',
+          icon: ComponentLogo,
+        },
+        {
+          title: 'Total KYC',
+          value: '0',
+          label: 'Verification',
+          icon: ComponentLogo,
+        },
+        {
+          title: data.totalRegistration.label,
+          value: data.totalRegistration.count,
+          label: 'User Registered',
+          icon: ComponentLogo,
+        },
+      ]
+      setSummaryCards(formatted)
+    })
+    .catch((err) => {
+      console.error('Gagal fetch data summary:', err)
+    })
+}, [])
+
+
 
   return (
     <>
